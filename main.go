@@ -29,7 +29,7 @@ func (h *HashRing) AddServer(name string, replica int) {
 
 	for r := range replica {
 		node := fmt.Sprintf("%s#%d", name, r)
-		hash := HashKey(name)
+		hash := HashKey(node)
 		h.ring[hash] = node
 		h.keys = append(h.keys, hash)
 	}
@@ -51,7 +51,7 @@ func (h *HashRing) GetNode(key string) string {
 	if idx == len(h.keys) {
 		idx = 0
 	}
-	fmt.Println(key, h.keys, hash)
+
 	return h.ring[h.keys[idx]]
 }
 
